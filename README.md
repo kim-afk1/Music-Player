@@ -1,38 +1,60 @@
-# BookHub
 
-BookHub – Library Borrow Tracker with Gamification and Review System
+# MP3MusicPlayer
 
-**Project Description:**
-  BookHub is a Java-based library management system designed to help users efficiently borrow and return books while adding engaging and interactive features. Members can log in to the system, borrow books, and track important dates such as the borrow date, the maximum return date (7 days), and the actual return date when the book is returned. After returning a book, users can submit reviews and ratings, which can be viewed by other members to help guide reading choices. To make the system more interactive, BookHub incorporates a gamification feature where timely returns earn points and badges like “Speedy Reader” or “Bookworm,” while late returns result in point deductions. The application ensures input validation to prevent errors, maintains a history of borrowed books, and encapsulates date-related calculations through a dedicated Date class. Overall, BookHub combines library management with gamification and social interaction, making borrowing books a more engaging and rewarding experience.
+## Project Overview
 
-  The main entities in BookHub include Member, Book, BorrowRecord, BorrowRecordList, Review, and Date. The Member entity stores information such as member ID, name, email, password, role, points, and badges, and is responsible for user authentication, profile management, tracking points and badges, and viewing borrow history. The Book entity contains the book ID, title, author, category, and available copies, and manages book information and availability. Each borrowing transaction is represented by a BorrowRecord, which tracks the record ID, member ID, book ID, borrow date, maximum return date, actual return date, and whether the book has been returned, with methods to calculate return dates, mark books as returned, check borrow duration, and determine overdue status. BorrowRecordList manages collections of borrow records, including all records, active borrows, and returned books, providing functionality to add new records and retrieve records by status or member. The Review entity captures reviews through review ID, borrower ID, book ID, rating, and comment, and allows users to add reviews, retrieve reviews by book or user, and display review content. Finally, the Date entity encapsulates date-related logic with day, month, and year attributes, offering methods to add days, compare dates, and format dates as strings, ensuring accurate handling of borrowing and return periods.
+The MP3MusicPlayer is a Java-based application designed to provide users with a simple, efficient, and intuitive interface to play MP3 files. It utilizes object-oriented programming principles and incorporates multiple design patterns and features such as exception handling, file handling, and a graphical user interface (GUI).
 
-**Project Flow:**
-Login: Members log in using their credentials.
+### Features
+* Play MP3 files.
+* Display song details (such as title, artist, album).
+* Handle playlists (add/remove songs).
+* Error handling for invalid files and exceptions.
+* Save and load playlists using file handling.
+* A user-friendly GUI.
 
-Borrow Book: Members select and confirm a book to borrow via the GUI.
+## How It's Made
+### Object-Oriented Programming Principles
+The following Object-Oriented Programming principles are applied in this project:
 
-Record Management: A BorrowRecord is created and the maximum return date is automatically set.
+1. **Abstraction**: Key details of the music player functionalities are hidden, and only necessary methods are exposed, such as `play()`, `pause()`, and `stop()`.
+2. **Encapsulation**: The internal state of each object (like `Song` or `Playlist`) is protected by private fields and is accessed or modified through public getter and setter methods.
+3. **Inheritance**: The `Playlist` class inherits from a base `Collection` class (or similar abstract class) that defines common behaviors for collections of items.
+4. **Polymorphism**: Different song types (e.g., different audio formats) can be handled polymorphically under a common interface.
 
-Return Book: Members press the “RETURNED” button; points are awarded or deducted based on timeliness.
+## Exception Handling
+The application ensures robustness by incorporating exception handling mechanisms. Key features include:
 
-Review Submission: After returning a book, members can submit a review and rating.
+* Throwing and catching exceptions when loading an invalid MP3 file.
+* Handling invalid input and error states gracefully.
 
-View History: Members can view their borrowing history, reviews, earned points, and badges.
+## File Handling
+The **FileManager** class provides functionality to:
+* Store and load MP3 playlists from text or binary files.
+* Support for saving user preferences for later sessions.
+
+## Graphical User Interface (GUI)
+The **GUI** is designed to be user-friendly and intuitive. It provides buttons for basic actions such as play, pause, and stop, as well as a playlist manager. The interface will display the current song and allow users to select different songs from a list.
+
+## Design Pattern
+The **MVC (Model-View-Controller)** design pattern is implemented to separate the application's data (Model), user interface (View), and control logic (Controller). This helps make the application more maintainable and scalable. Additionally, the **Singleton** pattern is used in the MusicPlayer class to ensure that only one instance of the player exists at a time.
 
 
-**Key Features:**
-User Authentication: Login, registration, and profile management for members.
+## Code Structure
 
-Borrowing System: Track borrowed books, return deadlines, and manage returns.
+### Core Classes
 
-Review System: Submit and view book reviews and ratings.
+* **`Song`**: Represents a single song with attributes like title, artist, and album. Also handles loading MP3 file details.
+* **`Playlist`**: Manages a collection of songs. It supports adding, removing, and listing songs.
+* **`MusicPlayer`**: The main class that controls music playback, and follows the Singleton pattern to ensure only one instance is active.
+* **`FileManager`**: Handles file operations such as saving and loading playlists and user preferences.
+* **`GUI`**: The graphical user interface for interacting with the music player.
 
-Gamification: Award points for timely returns, assign badges, and encourage responsible borrowing.
+### Key Methods
 
-Validation: Prevent invalid inputs, such as empty book titles or invalid dates, and provide friendly error messages.
-
-Date Management: Encapsulate all date-related logic in a Date class for accurate borrow and return tracking.
-
-**Unique Twist:**
-BookHub combines a gamification system with a review system, making the library experience more interactive, engaging, and community-oriented. Users are motivated to return books on time and actively participate in sharing book feedback, which makes borrowing books not only efficient but rewarding and fun.
+* **`play()`**: Starts playback of the current song.
+* **`pause()`**: Pauses the current song.
+* **`stop()`**: Stops the current song and resets the playback.
+* **`addSong()`**: Adds a song to the current playlist.
+* **`removeSong()`**: Removes a song from the playlist.
+* **(sample, for further changes).

@@ -6,12 +6,17 @@
 The MP3MusicPlayer is a Java-based application designed to provide users with a simple, efficient, and intuitive interface to play MP3 files. It utilizes object-oriented programming principles and incorporates multiple design patterns and features such as exception handling, file handling, and a graphical user interface (GUI).
 
 ### Features
-* Play MP3 files.
-* Display song details (such as title, artist, album).
-* Handle playlists (add/remove songs).
-* Error handling for invalid files and exceptions.
-* Save and load playlists using file handling.
-* A user-friendly GUI.
+🎶 Play an MP3 File (Song)
+🎙 Display Title of Song
+👤 Display Artist of Song
+⏳ Display the Length of the Song
+⏪ Playback Functionality
+⏸ Pause Song
+▶ Resume Song
+⏭ Go to next Song in a playlist
+⏮ Go to previous Song in a playlist
+📃 Create a Custom Playlist
+🔃 Load a Custom Playlist
 
 ## How It's Made
 ### Object-Oriented Programming Principles
@@ -49,6 +54,7 @@ The **MVC (Model-View-Controller)** design pattern is implemented to separate th
 * **`MusicPlayer`**: The main class that controls music playback, and follows the Singleton pattern to ensure only one instance is active.
 * **`FileManager`**: Handles file operations such as saving and loading playlists and user preferences.
 * **`GUI`**: The graphical user interface for interacting with the music player.
+(changes mya aplaly)
 
 ### Key Methods
 

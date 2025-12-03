@@ -11,7 +11,7 @@ public class App {
                 Member adminAccount = new Member("admin", "admin@spootify.com", "admin");
                 memberList.addMember(adminAccount);
 
-                loginWindow loginDialog = new loginWindow("Login to Spootify", memberList, mp3PlayerGUI);
+                loginWindow loginDialog = new loginWindow("Swingify", memberList, mp3PlayerGUI);
                 loginDialog.pack();
                 loginDialog.setLocationRelativeTo(null);
                 loginDialog.setVisible(true);

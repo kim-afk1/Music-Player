@@ -45,19 +45,20 @@ public class Mp3PlayerGUI extends JFrame {
 
     public void setCurrentMember(Member member) {
         this.currentMember = member;
-        if(userLabel != null) {
-            userLabel = new JLabel("Hello, " + currentMember.getUsername() + "!");
+        if(userLabel != null && member != null) {
+            userLabel.setText("User: " + member.getUsername());
+            userLabel.repaint();
         }
     }
 
     private void addGUIComponents() {
         addToolbar();
 
-        // Add user label at top right
+        // Add user label at top right (below toolbar)
         userLabel = new JLabel("Not logged in");
-        userLabel.setBounds(getWidth() - 200, 25, 190, 20);
-        userLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-        userLabel.setForeground(TEXT_COLOR);
+        userLabel.setBounds(getWidth() - 220, 25, 190, 25);
+        userLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+        userLabel.setForeground(new Color(205, 175, 52)); // Gold color to stand out
         userLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         add(userLabel);
 

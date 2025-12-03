@@ -16,6 +16,8 @@ public class Mp3PlayerGUI extends JFrame {
     public static final Color TEXT_COLOR = Color.WHITE;
     public static final Color SIDEBAR_COLOR = new Color(18, 18, 18);
 
+    private static final int SIDEBAR_WIDTH = 230;
+
     private Player musicPlayer;
     private JFileChooser fileChooser;
     private JLabel songTitle;
@@ -60,9 +62,9 @@ public class Mp3PlayerGUI extends JFrame {
         // Left sidebar for playlists
         addPlaylistSidebar();
 
-        // Adjust positions for main content (shifted right)
-        int mainContentX = 220;
-        int mainContentWidth = getWidth() - mainContentX - 20;
+        // Calculate main content area
+        int mainContentX = SIDEBAR_WIDTH;
+        int mainContentWidth = getWidth() - SIDEBAR_WIDTH - 20;
 
         userLabel = new JLabel("Not logged in");
         userLabel.setBounds(mainContentX + mainContentWidth - 200, 25, 190, 25);
@@ -89,8 +91,12 @@ public class Mp3PlayerGUI extends JFrame {
         songArtist.setHorizontalAlignment(SwingConstants.CENTER);
         add(songArtist);
 
+        // Center the slider in the main content area
+        int sliderWidth = 300;
+        int sliderX = mainContentX + (mainContentWidth - sliderWidth) / 2;
+
         playbackSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
-        playbackSlider.setBounds(mainContentX + (mainContentWidth/2 - 300/2), 365, 300, 50);
+        playbackSlider.setBounds(sliderX, 365, sliderWidth, 50);
         playbackSlider.setBackground(null);
         playbackSlider.setOpaque(false);
         playbackSlider.setFocusable(false);
@@ -121,7 +127,7 @@ public class Mp3PlayerGUI extends JFrame {
 
     private void addPlaylistSidebar() {
         JPanel sidebar = new JPanel();
-        sidebar.setBounds(0, 20, getWidth()-520, getHeight() - 20);
+        sidebar.setBounds(0, 20, SIDEBAR_WIDTH, getHeight() - 20);
         sidebar.setBackground(SIDEBAR_COLOR);
         sidebar.setLayout(null);
 
@@ -143,13 +149,11 @@ public class Mp3PlayerGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 MusicPlaylistDialog dialog = new MusicPlaylistDialog(Mp3PlayerGUI.this);
                 dialog.setVisible(true);
-                // Refresh sidebar after dialog closes
                 refreshPlaylistSidebar();
             }
         });
         sidebar.add(addPlaylistBtn);
 
-        // Playlist container with scroll
         playlistPanel = new JPanel();
         playlistPanel.setLayout(new BoxLayout(playlistPanel, BoxLayout.Y_AXIS));
         playlistPanel.setBackground(SIDEBAR_COLOR);
@@ -230,43 +234,6 @@ public class Mp3PlayerGUI extends JFrame {
         });
         songMenu.add(loadSong);
 
-        /*JMenu playlistMenu = new JMenu("Playlist");
-        menuBar.add(playlistMenu);
-
-        JMenuItem createPlaylist = new JMenuItem("Create Playlist");
-        createPlaylist.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MusicPlaylistDialog dialog = new MusicPlaylistDialog(Mp3PlayerGUI.this);
-                dialog.setVisible(true);
-                // Refresh sidebar after dialog closes
-                refreshPlaylistSidebar();
-            }
-        });
-        playlistMenu.add(createPlaylist);
-
-        JMenuItem loadPlaylist = new JMenuItem("Load Playlist");
-        loadPlaylist.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser jFileChooser = new JFileChooser();
-                jFileChooser.setFileFilter(new FileNameExtensionFilter("Playlist", "txt"));
-                jFileChooser.setCurrentDirectory(new File("src/assets"));
-                int result = jFileChooser.showOpenDialog(Mp3PlayerGUI.this);
-                File selectedFile = jFileChooser.getSelectedFile();
-                if(result==JFileChooser.APPROVE_OPTION && selectedFile!=null) {
-                    musicPlayer.stopSong();
-                    musicPlayer.loadPlaylist(selectedFile);
-
-                    // Add to sidebar if not already there
-                    String playlistName = selectedFile.getName().replace(".txt", "");
-                    addPlaylistToSidebar(playlistName, selectedFile);
-                }
-            }
-        });
-        playlistMenu.add(loadPlaylist);*/
-
-        // Add Account menu
         JMenu accountMenu = new JMenu("Account");
         menuBar.add(accountMenu);
 
@@ -319,8 +286,9 @@ public class Mp3PlayerGUI extends JFrame {
 
     private void addPlaybackBtns() {
         playbackBtns = new JPanel();
-        playbackBtns.setBounds(220, 410, getWidth()-220, 80);
-        playbackBtns.setBackground(null);
+        // Consistent sidebar width for positioning
+        playbackBtns.setBounds(SIDEBAR_WIDTH, 410, getWidth() - SIDEBAR_WIDTH - 20, 80);
+        playbackBtns.setBackground(FRAME_COLOR);
 
         JButton prevButton = new JButton(loadImage("src/assets/previous.png"));
         prevButton.setBorderPainted(false);

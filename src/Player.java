@@ -31,6 +31,12 @@ public class Player extends PlaybackListener {
 
     public void loadPlaylist(File playlistFile) {
         playlist = new ArrayList<>();
+
+        // Stop current song and cleanup threads before loading new playlist
+        if(currentSong != null) {
+            stopSong();
+        }
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(playlistFile));
             String songPath;

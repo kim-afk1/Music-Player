@@ -62,7 +62,6 @@ public class Mp3PlayerGUI extends JFrame {
         // Left sidebar for playlists
         addPlaylistSidebar();
 
-        // Calculate main content area
         int mainContentX = SIDEBAR_WIDTH;
         int mainContentWidth = getWidth() - SIDEBAR_WIDTH - 20;
 
@@ -290,7 +289,6 @@ public class Mp3PlayerGUI extends JFrame {
 
     private void addPlaybackBtns() {
         playbackBtns = new JPanel();
-        // Consistent sidebar width for positioning
         playbackBtns.setBounds(SIDEBAR_WIDTH, 410, getWidth() - SIDEBAR_WIDTH - 20, 80);
         playbackBtns.setBackground(FRAME_COLOR);
 

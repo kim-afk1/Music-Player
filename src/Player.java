@@ -88,7 +88,6 @@ public class Player extends PlaybackListener {
     }
 
     public void stopSong() {
-        // Stop the slider thread first
         stopSliderThread = true;
         if(playbackSliderThread != null) {
             try {
@@ -98,10 +97,15 @@ public class Player extends PlaybackListener {
             }
         }
 
-        if(advancedPlayer!=null) {
-            advancedPlayer.stop();
-            advancedPlayer.close();
-            advancedPlayer = null;
+        if(advancedPlayer != null) {
+            try {
+                advancedPlayer.stop();
+                advancedPlayer.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+            } finally {
+                advancedPlayer = null;
+            }
         }
     }
 
@@ -242,10 +246,8 @@ public class Player extends PlaybackListener {
     public void playbackFinished(PlaybackEvent evt) {
         System.out.println("Playback finished");
 
-        // Stop the slider thread when playback finishes
         stopSliderThread = true;
 
-        // Wait for slider thread to actually stop
         if(playbackSliderThread != null) {
             try {
                 playbackSliderThread.join(200);

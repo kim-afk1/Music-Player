@@ -7,16 +7,16 @@ A modern, feature-rich music player built with Java Swing, offering an intuitive
 
 Swingify is a desktop music player application developed in Java using the Swing framework. The project demonstrates object-oriented programming principles, GUI design patterns, and audio playback functionality. It features a complete user authentication system, music library management, playlist creation, and a polished user interface inspired by Spotify.
 
-## Features
+# Features
 
-# User Authentication
+## User Authentication
 * Secure login system with username and password
 * Create new user accounts with email validation
 * Password confirmation during registration
 * User session management with logout functionality
 * Persistent user data across sessions
 
-# Music Playback
+## Music Playback
 * Play, pause, and stop audio files
 * Previous and next track navigation
 * Seek functionality with progress slider
@@ -25,20 +25,36 @@ Swingify is a desktop music player application developed in Java using the Swing
 * Formatted time display (current/total duration)
 * Repeat functionality 
 
-# Playlist Management
+## Playlist Management
 * Create custom playlists
 * Add songs to playlists
 * View all songs in library
 * Delete playlists
 
 
-### Object-Oriented Programming Principles
+
+
+
+# Object-Oriented Programming Principles
 The following Object-Oriented Programming principles are applied in this project:
 
-1. **Abstraction**: Key details of the music player functionalities are hidden, and only necessary methods are exposed, such as `play()`, `pause()`, and `stop()`.
-2. **Encapsulation**: The internal state of each object (like `Song` or `Playlist`) is protected by private fields and is accessed or modified through public getter and setter methods.
-3. **Inheritance**: The `Playlist` class inherits from a base `Collection` class (or similar abstract class) that defines common behaviors for collections of items.
-4. **Polymorphism**: Different song types (e.g., different audio formats) can be handled polymorphically under a common interface.
+1. **Abstraction**:
+   - Shows how AudioPlayer hides complex audio internals
+   - Users just call play(), don't need to know about clips and microsecond positioning
+     
+2. **Encapsulation**:
+   - Demonstrates private fields in Song, Playlist, Member
+   - Shows controlled access through getters
+   - Highlights password protection in Member class
+     
+3. **Inheritance**:
+   - UI dialogs inherit from JDialog → loginWindow, createAccount
+   - UI panels inherit from JPanel → MainPanel, SidebarPanel
+   - Interface implementation → MainPanel implements PlaybackListener
+   - Shows real inheritance in your codebase, not hypothetical examples
+     
+4. **Polymorphism**:
+   - Swing component polymorphism → All components treated as Component for layout
 
 ## Exception Handling
 The application ensures robustness by incorporating exception handling mechanisms. Key features include:

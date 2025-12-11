@@ -15,7 +15,7 @@ public class MusicPlayerApp {
             memberList.addMember(new Member("admin", "admin@musicplayer.com", "admin"));
 
             // Create the main music player GUI with the member list (hidden initially)
-            Mp3PlayerGUI mp3PlayerGUI = new Mp3PlayerGUI(memberList);
+            MusicPlayerGUI mp3PlayerGUI = new MusicPlayerGUI(memberList);
 
             // Show login window first
             loginWindow login = new loginWindow("Login to Swingify", memberList, mp3PlayerGUI);
